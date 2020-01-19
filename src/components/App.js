@@ -20,7 +20,11 @@ export class App extends Component {
 
   // Event Handlers
   toggleTimer = () => {
-    this.setState({ timerValue: this.state.timerValue - 1000 });
+    if (this.state.timerValue === 0) {
+      return;
+    } else {
+      this.setState({ timerValue: this.state.timerValue - 1000 });
+    }
 
     if (this.state.buttonValue === "stop") {
       clearInterval(this.interval);
