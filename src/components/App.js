@@ -1,10 +1,10 @@
 import React from "react";
-import Timer from "./Timer";
+import TimerController from "./TimerController";
 
 export default function App() {
   return (
     <div>
-      <Timer />
+      <TimerController />
     </div>
   );
 }
