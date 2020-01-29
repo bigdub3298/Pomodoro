@@ -22,3 +22,7 @@ export const stopTimer = () => {
   clearInterval(timer);
   return { type: "TIMER_STOP" };
 };
+
+export const resetCount = () => {
+  return { type: "RESET_COUNT" };
+};
