@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   time: 0,
   buttonString: "start",
+  type: "work",
   isDone: true
 };
 
@@ -13,7 +14,11 @@ export default (state = INITIAL_STATE, action) => {
     case "TIMER_START":
       return { ...state, buttonString: "stop" };
     case "TIMER_STOP":
-      return { ...state, buttonString: "start", isDone: true };
+      const type = state.type === "work" ? "break" : "work";
+      if (state.time === 0) {
+        return { ...state, buttonString: "start", isDone: true, type };
+      }
+      return { ...state, buttonString: "start" };
     default:
       return state;
   }
