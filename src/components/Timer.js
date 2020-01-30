@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../scss/Timer.scss";
 
 class Timer extends Component {
   millisecondsToFormatedTime = milliseconds => {
@@ -13,8 +14,11 @@ class Timer extends Component {
 
   render() {
     return (
-      <div>
-        <h1>{this.millisecondsToFormatedTime(this.props.time)}</h1>
+      <div className="timer">
+        <h1 className="timer__display">
+          {this.millisecondsToFormatedTime(this.props.time)}
+        </h1>
+        <h3 className="timer__type">{this.props.type}</h3>
       </div>
     );
   }
