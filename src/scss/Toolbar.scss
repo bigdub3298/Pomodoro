@@ -4,9 +4,13 @@
   border-radius: 5px;
 
   &__nav {
+    background-color: #2e374b;
+    padding: 0 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    align-items: center;
     height: 48px;
     text-align: center;
-    background-color: #2e374b;
   }
 
   &__title {
@@ -14,9 +18,9 @@
   }
 
   &__menu {
-    display: none;
-    height: 400px;
     background-color: #8d8d8d;
+    height: 400px;
+    transition: opacity 0.3s ease-out;
   }
 
   &__footer {
