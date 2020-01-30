@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { connect } from "react-redux";
 
 export class TimerForm extends Component {
   formatMinutes = minutes => {
@@ -54,16 +53,6 @@ export class TimerForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  if (state.form.timerForm) {
-    return { formValues: state.form.timerForm.values };
-  } else {
-    return { fromValue: { work: 0, break: 0, rounds: 0 } };
-  }
-};
-
-const wrappedForm = reduxForm({
+export default reduxForm({
   form: "timerForm"
 })(TimerForm);
-
-export default connect(mapStateToProps)(wrappedForm);
