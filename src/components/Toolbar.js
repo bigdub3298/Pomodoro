@@ -1,16 +1,26 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { resetTimer, stopTimer } from "../actions";
 import HamburgerButton from "./HamburgurButton";
 import TimerForm from "./TimerForm";
 import "../scss/Toolbar.scss";
 
 class Toolbar extends Component {
+  state = { menuOpen: true };
   menuRef = React.createRef();
 
   toggleMenu = () => {
-    // const opacity = this.menuRef.current.style.opacity;
-    // const display = this.menuRef.current.style.display;
-    // this.menuRef.current.style.display = display === "none" ? "block" : "none";
-    // this.menuRef.current.style.opacity = opacity === "0" ? "1" : "0";
+    if (this.state.menuOpen) {
+      this.menuRef.current.style.display = "block";
+      this.menuRef.current.style.opacity = "1";
+      this.props.stopTimer();
+    } else {
+      this.menuRef.current.style.display = "none";
+      this.menuRef.current.style.opacity = "0";
+      this.props.resetTimer(this.props.workTime);
+    }
+
+    this.setState({ menuOpen: !this.state.menuOpen });
   };
 
   render() {
@@ -25,9 +35,9 @@ class Toolbar extends Component {
         <div
           ref={this.menuRef}
           className="toolbar__menu"
-          // style={{opacity: "0", display: "none" }}
+          style={{ opacity: "0", display: "none" }}
         >
-          <TimerForm initialValues={{ work: 25, break: 5, rounds: 2 }} />
+          <TimerForm initialValues={{ work: 1, break: 1, rounds: 1 }} />
         </div>
         <div className="toolbar__footer"></div>
       </div>
@@ -35,4 +45,13 @@ class Toolbar extends Component {
   }
 }
 
-export default Toolbar;
+const mapStateToProps = state => {
+  const { work: workTime } = state.form.timerForm?.values ?? { work: 0 };
+
+  return { workTime };
+};
+
+export default connect(mapStateToProps, {
+  stopTimer,
+  resetTimer
+})(Toolbar);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setTimer, startTimer, stopTimer, resetCount } from "../actions";
+import { setTimer, startTimer, stopTimer, resetTimer } from "../actions";
 import Timer from "./Timer";
 import mp3 from "../assets/notifications/just-saying.mp3";
 import ogg from "../assets/notifications/just-saying.ogg";
@@ -10,9 +10,6 @@ import "../scss/TimerController.scss";
 export class TimerController extends Component {
   buttonRef = React.createRef();
   audioRef = React.createRef();
-  workTime = 0.1;
-  breakTime = 0.1;
-
   toggleTimerState = e => {
     if (e.target.innerText === "Start") {
       e.target.innerText = "Stop";
@@ -24,15 +21,19 @@ export class TimerController extends Component {
   };
 
   componentDidMount() {
-    this.props.setTimer(this.workTime);
+    this.props.setTimer(this.props.workTime);
   }
 
   componentDidUpdate() {
-    if (this.props.time === 0 && this.props.count < 2) {
+    if (this.props.count === 0) {
+      this.buttonRef.current.innerText = "Start";
+    }
+
+    if (this.props.time === 0 && this.props.count <= this.props.rounds * 2) {
       this.props.stopTimer();
       this.buttonRef.current.innerText = "Start";
       const timerAmount =
-        this.props.type === "work" ? this.workTime : this.breakTime;
+        this.props.type === "work" ? this.props.workTime : this.props.breakTime;
       this.props.setTimer(timerAmount);
       this.audioRef.current.play();
 
@@ -44,10 +45,10 @@ export class TimerController extends Component {
       this.props.stopTimer();
       this.buttonRef.current.innerText = "Start";
       const timerAmount =
-        this.props.type === "work" ? this.workTime : this.breakTime;
+        this.props.type === "work" ? this.props.workTime : this.props.breakTime;
       this.props.setTimer(timerAmount);
       this.audioRef.current.play();
-      this.props.resetCount();
+      this.props.resetTimer(this.props.workTime);
     }
   }
 
@@ -73,10 +74,15 @@ export class TimerController extends Component {
 }
 
 const mapStateToProps = state => {
+  const { work: workTime, break: breakTime, rounds } = state.form.timerForm
+    ?.values ?? { work: 0, break: 0, rounds: 0 };
   return {
     time: state.timer.time,
     type: state.timer.type,
-    count: state.timer.count
+    count: state.timer.count,
+    workTime,
+    breakTime,
+    rounds
   };
 };
 
@@ -84,5 +90,5 @@ export default connect(mapStateToProps, {
   setTimer,
   startTimer,
   stopTimer,
-  resetCount
+  resetTimer
 })(TimerController);

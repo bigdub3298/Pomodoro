@@ -23,6 +23,6 @@ export const stopTimer = () => {
   return { type: "TIMER_STOP" };
 };
 
-export const resetCount = () => {
-  return { type: "RESET_COUNT" };
+export const resetTimer = minutes => {
+  return { type: "RESET_TIMER", payload: minutes };
 };

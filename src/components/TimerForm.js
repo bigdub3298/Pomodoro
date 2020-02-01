@@ -12,7 +12,13 @@ export class TimerForm extends Component {
         <label>{label}</label>
         <p>{this.formatMinutes(value)}</p>
         <div>
-          <input onChange={onChange} type={type} min={min} max={max} />
+          <input
+            onChange={onChange}
+            type={type}
+            min={min}
+            max={max}
+            value={value}
+          />
         </div>
       </div>
     );
