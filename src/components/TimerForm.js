@@ -10,7 +10,7 @@ export class TimerForm extends Component {
     return (
       <div>
         <label>{label}</label>
-        <p>{this.formatMinutes(value)}</p>
+        <p>{label === "Rounds" ? value : this.formatMinutes(value)}</p>
         <div>
           <input
             onChange={onChange}

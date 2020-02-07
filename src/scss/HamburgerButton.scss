@@ -9,9 +9,7 @@
   cursor: pointer;
   outline: none;
 
-  &__top-line,
-  &__mid-line,
-  &__bot-line {
+  &__line {
     width: 30px;
     height: 1px;
     background-color: #e5e5e5;

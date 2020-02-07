@@ -8,9 +8,9 @@ export default function HamburgurButton(props) {
 
   return (
     <button onClick={toggleMenu} className="hamburger-button">
-      <div className="hamburger-button__top-line"></div>
-      <div className="hamburger-button__mid-line"></div>
-      <div className="hamburger-button__bot-line"></div>
+      <div className="hamburger-button__line"></div>
+      <div className="hamburger-button__line"></div>
+      <div className="hamburger-button__line"></div>
     </button>
   );
 }

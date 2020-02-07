@@ -11,6 +11,7 @@ class Toolbar extends Component {
 
   toggleMenu = () => {
     if (this.state.menuOpen) {
+      console.log(this.menuRef.current.className);
       this.menuRef.current.style.display = "block";
       this.menuRef.current.style.opacity = "1";
       this.props.stopTimer();
