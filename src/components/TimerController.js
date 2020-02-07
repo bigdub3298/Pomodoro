@@ -11,12 +11,10 @@ export class TimerController extends Component {
   buttonRef = React.createRef();
   audioRef = React.createRef();
   toggleTimerState = e => {
-    if (e.target.innerText === "Start") {
-      e.target.innerText = "Stop";
-      this.props.startTimer();
-    } else {
-      e.target.innerText = "Start";
+    if (this.props.isTimerOn) {
       this.props.stopTimer();
+    } else {
+      this.props.startTimer();
     }
   };
 
@@ -25,13 +23,8 @@ export class TimerController extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.count === 0) {
-      this.buttonRef.current.innerText = "Start";
-    }
-
     if (this.props.time === 0 && this.props.count <= this.props.rounds * 2) {
       this.props.stopTimer();
-      this.buttonRef.current.innerText = "Start";
       const timerAmount =
         this.props.type === "work" ? this.props.workTime : this.props.breakTime;
       this.props.setTimer(timerAmount);
@@ -39,11 +32,9 @@ export class TimerController extends Component {
 
       setTimeout(() => {
         this.props.startTimer();
-        this.buttonRef.current.innerText = "Stop";
       }, 2000);
     } else if (this.props.time === 0) {
       this.props.stopTimer();
-      this.buttonRef.current.innerText = "Start";
       const timerAmount =
         this.props.type === "work" ? this.props.workTime : this.props.breakTime;
       this.props.setTimer(timerAmount);
@@ -66,7 +57,7 @@ export class TimerController extends Component {
           className="timer-controller__button"
           onClick={this.toggleTimerState}
         >
-          Start
+          {this.props.isTimerOn ? "Stop" : "Start"}
         </button>
       </div>
     );
@@ -82,7 +73,8 @@ const mapStateToProps = state => {
     count: state.timer.count,
     workTime,
     breakTime,
-    rounds
+    rounds,
+    isTimerOn: state.timer.isTimerOn
   };
 };
 

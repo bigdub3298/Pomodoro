@@ -1,7 +1,8 @@
 const INITIAL_STATE = {
   time: 0,
   type: "work",
-  count: 0
+  count: 0,
+  isTimerOn: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,9 +16,16 @@ export default (state = INITIAL_STATE, action) => {
     case "TIMER_STOP":
       const type = state.type === "work" ? "break" : "work";
       if (state.time === 0) {
-        return { ...state, type, count: state.count + 1 };
+        return {
+          ...state,
+          type,
+          count: state.count + 1,
+          isTimerOn: !state.isTimerOn
+        };
       }
+      return { ...state, isTimerOn: !state.isTimerOn };
     case "TIMER_START":
+      return { ...state, isTimerOn: !state.isTimerOn };
     default:
       return state;
   }
