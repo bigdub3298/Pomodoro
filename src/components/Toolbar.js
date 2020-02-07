@@ -6,21 +6,14 @@ import TimerForm from "./TimerForm";
 import "../scss/Toolbar.scss";
 
 class Toolbar extends Component {
-  state = { menuOpen: true };
-  menuRef = React.createRef();
+  state = { menuOpen: false };
 
   toggleMenu = () => {
     if (this.state.menuOpen) {
-      console.log(this.menuRef.current.className);
-      this.menuRef.current.style.display = "block";
-      this.menuRef.current.style.opacity = "1";
-      this.props.stopTimer();
-    } else {
-      this.menuRef.current.style.display = "none";
-      this.menuRef.current.style.opacity = "0";
       this.props.resetTimer(this.props.workTime);
+    } else {
+      this.props.stopTimer();
     }
-
     this.setState({ menuOpen: !this.state.menuOpen });
   };
 
@@ -34,9 +27,11 @@ class Toolbar extends Component {
           <div className="toolbar__title">Pomodoro</div>
         </div>
         <div
-          ref={this.menuRef}
-          className="toolbar__menu"
-          style={{ opacity: "0", display: "none" }}
+          className={
+            this.state.menuOpen
+              ? "toolbar__menu toolbar__menu--open"
+              : "toolbar__menu"
+          }
         >
           <TimerForm initialValues={{ work: 1, break: 1, rounds: 1 }} />
         </div>
