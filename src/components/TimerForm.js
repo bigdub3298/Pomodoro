@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
+import "../scss/TimerForm.scss";
+
 export class TimerForm extends Component {
   formatMinutes = minutes => {
     return `${minutes}:00`;
@@ -8,11 +10,14 @@ export class TimerForm extends Component {
 
   renderField = ({ input: { onChange, value }, label, type, min, max }) => {
     return (
-      <div>
-        <label>{label}</label>
-        <p>{label === "Rounds" ? value : this.formatMinutes(value)}</p>
+      <div className="form-control">
+        <label className="form-control__label">{label}</label>
+        <p className="form-control__value">
+          {label === "Rounds" ? value : this.formatMinutes(value)}
+        </p>
         <div>
           <input
+            className="form-control__input"
             onChange={onChange}
             type={type}
             min={min}
@@ -26,9 +31,9 @@ export class TimerForm extends Component {
 
   render() {
     return (
-      <div>
-        <p>Timer</p>
-        <form>
+      <div className="menu">
+        <p className="menu__header">Timer</p>
+        <form className="menu__form">
           <Field
             name="work"
             type="range"
