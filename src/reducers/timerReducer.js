@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
   time: 0,
   type: "work",
-  count: 0,
+  count: 1,
   isTimerOn: false
 };
 

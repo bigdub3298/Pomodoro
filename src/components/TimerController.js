@@ -23,7 +23,7 @@ export class TimerController extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.time === 0 && this.props.count <= this.props.rounds * 2) {
+    if (this.props.time === 0 && this.props.count < this.props.rounds * 2 - 1) {
       this.props.stopTimer();
       const timerAmount =
         this.props.type === "work" ? this.props.workTime : this.props.breakTime;
@@ -35,9 +35,6 @@ export class TimerController extends Component {
       }, 2000);
     } else if (this.props.time === 0) {
       this.props.stopTimer();
-      const timerAmount =
-        this.props.type === "work" ? this.props.workTime : this.props.breakTime;
-      this.props.setTimer(timerAmount);
       this.audioRef.current.play();
       this.props.resetTimer(this.props.workTime);
     }
