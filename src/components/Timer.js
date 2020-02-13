@@ -17,7 +17,7 @@ class Timer extends Component {
         <h1 className="timer__display">
           {this.formatMilliSec(this.props.time)}
         </h1>
-        <h3 className="timer__type">{this.props.type}</h3>
+        <h3 className="timer__type">{this.props.type.toUpperCase()}</h3>
       </div>
     );
   }
