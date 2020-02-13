@@ -51,13 +51,26 @@ export class TimerController extends Component {
           <source src={m4r} type="audio/mp4" />
         </audio>
         <Timer time={this.props.time} type={this.props.type} />
-        <button
-          ref={this.buttonRef}
-          className="timer-controller__button"
-          onClick={this.toggleTimerState}
-        >
-          {this.props.isTimerOn ? "Stop" : "Start"}
-        </button>
+        <div className="control-panel">
+          <button
+            ref={this.buttonRef}
+            className="control-panel__start"
+            onClick={this.toggleTimerState}
+          >
+            {this.props.isTimerOn ? "Stop" : "Start"}
+          </button>
+          <div className="control-panel__menu">
+            <div className="control-panel__menu-left">
+              <h3>
+                {Math.ceil(this.props.count / 2)}/{this.props.rounds}
+              </h3>
+              <button className="control-panel__reset">Reset</button>
+            </div>
+            <div className="control-panel__menu-right">
+              <button className="control-panel__skip">Skip</button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
