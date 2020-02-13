@@ -69,7 +69,7 @@ export class TimerController extends Component {
               <h3>
                 {Math.ceil(this.props.count / 2)}/{this.props.rounds}
               </h3>
-              <button className="control-panel__reset">Reset</button>
+              <p className="control-panel__reset">Reset</p>
             </div>
             <div className="control-panel__menu-right">
               <div className="control-panel__skip">
