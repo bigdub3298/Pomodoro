@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "RESET_TIMER":
+    case "RESET_T0_ORIGINAL":
       return { ...INITIAL_STATE, time: action.payload * 60000 };
     case "TIMER_SET":
       return { ...state, time: action.payload * 60000 };
