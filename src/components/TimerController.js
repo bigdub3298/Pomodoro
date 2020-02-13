@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setTimer, startTimer, stopTimer, resetTimer } from "../actions";
+import { setTimer, startTimer, stopTimer, resetToOriginal } from "../actions";
 import Timer from "./Timer";
 import mp3 from "../assets/notifications/just-saying.mp3";
 import ogg from "../assets/notifications/just-saying.ogg";
@@ -19,14 +19,16 @@ export class TimerController extends Component {
   };
 
   componentDidMount() {
-    this.props.setTimer(this.props.workTime);
+    this.props.setTimer(this.props.workTimerAmount);
   }
 
   componentDidUpdate() {
-    if (this.props.time === 0 && this.props.count < this.props.rounds * 2 - 1) {
+    if (this.props.time === 0 && this.props.count < this.props.rounds * 2) {
       this.props.stopTimer();
       const timerAmount =
-        this.props.type === "work" ? this.props.workTime : this.props.breakTime;
+        this.props.type === "work"
+          ? this.props.breakTimerAmount
+          : this.props.workTimerAmount;
       this.props.setTimer(timerAmount);
       this.audioRef.current.play();
 
@@ -36,7 +38,7 @@ export class TimerController extends Component {
     } else if (this.props.time === 0) {
       this.props.stopTimer();
       this.audioRef.current.play();
-      this.props.resetTimer(this.props.workTime);
+      this.props.resetToOriginal(this.props.workTimerAmount);
     }
   }
 
@@ -62,14 +64,14 @@ export class TimerController extends Component {
 }
 
 const mapStateToProps = state => {
-  const { work: workTime, break: breakTime, rounds } = state.form.timerForm
-    ?.values ?? { work: 0, break: 0, rounds: 0 };
+  const { work: workTimerAmount, break: breakTimerAmount, rounds } = state.form
+    .timerForm?.values ?? { work: 0, break: 0, rounds: 0 };
   return {
     time: state.timer.time,
     type: state.timer.type,
     count: state.timer.count,
-    workTime,
-    breakTime,
+    workTimerAmount,
+    breakTimerAmount,
     rounds,
     isTimerOn: state.timer.isTimerOn
   };
@@ -79,5 +81,5 @@ export default connect(mapStateToProps, {
   setTimer,
   startTimer,
   stopTimer,
-  resetTimer
+  resetToOriginal
 })(TimerController);
