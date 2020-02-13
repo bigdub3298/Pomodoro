@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faStepForward,
+  faPlay,
+  faPause
+} from "@fortawesome/free-solid-svg-icons";
 import { setTimer, startTimer, stopTimer, resetToOriginal } from "../actions";
 import Timer from "./Timer";
 import mp3 from "../assets/notifications/just-saying.mp3";
@@ -8,10 +14,9 @@ import m4r from "../assets/notifications/just-saying.m4a";
 import "../scss/TimerController.scss";
 
 export class TimerController extends Component {
-  buttonRef = React.createRef();
   audioRef = React.createRef();
   toggleTimerState = e => {
-    if (this.props.isTimerOn) {
+    if (this.props.timerIsOn) {
       this.props.stopTimer();
     } else {
       this.props.startTimer();
@@ -42,6 +47,10 @@ export class TimerController extends Component {
     }
   }
 
+  renderButtonIcon(timerIsOn) {
+    return <FontAwesomeIcon icon={timerIsOn ? faPause : faPlay} />;
+  }
+
   render() {
     return (
       <div className="timer-controller">
@@ -52,13 +61,9 @@ export class TimerController extends Component {
         </audio>
         <Timer time={this.props.time} type={this.props.type} />
         <div className="control-panel">
-          <button
-            ref={this.buttonRef}
-            className="control-panel__start"
-            onClick={this.toggleTimerState}
-          >
-            {this.props.isTimerOn ? "Stop" : "Start"}
-          </button>
+          <div className="control-panel__start" onClick={this.toggleTimerState}>
+            {this.renderButtonIcon(this.props.timerIsOn)}
+          </div>
           <div className="control-panel__menu">
             <div className="control-panel__menu-left">
               <h3>
@@ -67,7 +72,9 @@ export class TimerController extends Component {
               <button className="control-panel__reset">Reset</button>
             </div>
             <div className="control-panel__menu-right">
-              <button className="control-panel__skip">Skip</button>
+              <div className="control-panel__skip">
+                <FontAwesomeIcon icon={faStepForward} />
+              </div>
             </div>
           </div>
         </div>
@@ -86,7 +93,7 @@ const mapStateToProps = state => {
     workTimerAmount,
     breakTimerAmount,
     rounds,
-    isTimerOn: state.timer.isTimerOn
+    timerIsOn: state.timer.isTimerOn
   };
 };
 
