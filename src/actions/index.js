@@ -23,6 +23,19 @@ export const stopTimer = () => {
   return { type: "TIMER_STOP" };
 };
 
-export const resetToOriginal = minutes => {
-  return { type: "RESET_T0_ORIGINAL", payload: minutes };
+export const resetToOriginal = minutes => dispatch => {
+  clearInterval(timer);
+  dispatch({ type: "RESET_T0_ORIGINAL" });
+  dispatch(setTimer(minutes));
+};
+
+export const resetTimer = minutes => dispatch => {
+  clearInterval(timer);
+  dispatch({ type: "RESET_TIMER" });
+  dispatch(setTimer(minutes));
+};
+
+export const skipTimer = minutes => dispatch => {
+  dispatch({ type: "SKIP_TIMER" });
+  dispatch(setTimer(minutes));
 };

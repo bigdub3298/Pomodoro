@@ -6,15 +6,16 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+  let type;
   switch (action.type) {
     case "RESET_T0_ORIGINAL":
-      return { ...INITIAL_STATE, time: action.payload * 60000 };
+      return { ...INITIAL_STATE };
     case "TIMER_SET":
       return { ...state, time: action.payload * 60000 };
     case "TIMER_TICK":
       return { ...state, time: state.time - 1000 };
     case "TIMER_STOP":
-      const type = state.type === "work" ? "break" : "work";
+      type = state.type === "work" ? "break" : "work";
       if (state.time === 0) {
         return {
           ...state,
@@ -26,6 +27,18 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, isTimerOn: !state.isTimerOn };
     case "TIMER_START":
       return { ...state, isTimerOn: !state.isTimerOn };
+    case "SKIP_TIMER":
+      type = state.type === "work" ? "break" : "work";
+      return {
+        ...state,
+        type,
+        count: state.count + 1
+      };
+    case "RESET_TIMER":
+      return {
+        ...state,
+        isTimerOn: state.isTimerOn ? !state.isTimerOn : false
+      };
     default:
       return state;
   }
