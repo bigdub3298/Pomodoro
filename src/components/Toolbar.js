@@ -61,7 +61,7 @@ class Toolbar extends Component {
               : "toolbar__menu"
           }
         >
-          <TimerForm initialValues={{ work: 1, break: 1, rounds: 1 }} />
+          <TimerForm initialValues={{ work: 25, break: 5, rounds: 2 }} />
         </div>
         <div className="toolbar__footer"></div>
       </div>
