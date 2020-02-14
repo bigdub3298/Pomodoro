@@ -1,0 +1,68 @@
+.timer-controller {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: inherit;
+  color: #8d8d8d;
+
+  &__start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2e374b;
+    border: 2px solid #8d8d8d;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    margin: 0.5rem auto;
+    font-size: 1.5rem;
+    color: inherit;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      background-color: lighten(#2e374b, 10%);
+    }
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    &-left {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+
+      h3 {
+        color: #e5e5e5;
+      }
+    }
+  }
+
+  &__skip {
+    font-size: 1.5rem;
+    transition: color 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: #fe4e4d;
+    }
+  }
+
+  &__reset {
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: #fe4e4d;
+    }
+  }
+}
