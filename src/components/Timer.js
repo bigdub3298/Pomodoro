@@ -3,7 +3,9 @@ import "../scss/Timer.scss";
 
 class Timer extends Component {
   formatMilliSec = milliseconds => {
-    const minutes = Math.floor((milliseconds % (1000 * 60 * 60)) / (1000 * 60));
+    const minutes = Math.floor(
+      (milliseconds % (1000 * 60 * 60 + 1)) / (1000 * 60)
+    );
     const seconds = Math.floor((milliseconds % (1000 * 60)) / 1000);
 
     const formatedSeconds = `0${seconds}`.slice(-2);
