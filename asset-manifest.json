@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Pomodoro/static/css/main.aed3b93e.chunk.css",
+    "main.js": "/Pomodoro/static/js/main.da23b5a7.chunk.js",
+    "main.js.map": "/Pomodoro/static/js/main.da23b5a7.chunk.js.map",
+    "runtime-main.js": "/Pomodoro/static/js/runtime-main.18b37d25.js",
+    "runtime-main.js.map": "/Pomodoro/static/js/runtime-main.18b37d25.js.map",
+    "static/js/2.dc512497.chunk.js": "/Pomodoro/static/js/2.dc512497.chunk.js",
+    "static/js/2.dc512497.chunk.js.map": "/Pomodoro/static/js/2.dc512497.chunk.js.map",
+    "index.html": "/Pomodoro/index.html",
+    "precache-manifest.3248ba9abbc56446c84d16267bbca186.js": "/Pomodoro/precache-manifest.3248ba9abbc56446c84d16267bbca186.js",
+    "service-worker.js": "/Pomodoro/service-worker.js",
+    "static/css/main.aed3b93e.chunk.css.map": "/Pomodoro/static/css/main.aed3b93e.chunk.css.map",
+    "static/js/2.dc512497.chunk.js.LICENSE": "/Pomodoro/static/js/2.dc512497.chunk.js.LICENSE",
+    "static/media/just-saying.ogg": "/Pomodoro/static/media/just-saying.418b9aff.ogg",
+    "static/media/just-saying.mp3": "/Pomodoro/static/media/just-saying.594e6e42.mp3",
+    "static/media/just-saying.m4a": "/Pomodoro/static/media/just-saying.ec10c895.m4a"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.18b37d25.js",
+    "static/js/2.dc512497.chunk.js",
+    "static/css/main.aed3b93e.chunk.css",
+    "static/js/main.da23b5a7.chunk.js"
+  ]
+}
