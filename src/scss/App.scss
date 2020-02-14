@@ -24,3 +24,11 @@ a {
   margin: 1rem auto;
   text-align: center;
 }
+
+@media (max-width: 450px) {
+  .app {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+  }
+}

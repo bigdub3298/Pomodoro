@@ -18,7 +18,7 @@
     background-color: #181c25;
     color: #e5e5e5;
     font-family: "Inconsolata", sans-serif;
-    width: 40px;
+    width: 45px;
     margin: 1rem auto;
     border-radius: 3px;
   }
@@ -64,6 +64,22 @@
 
     &:focus {
       outline: none;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .menu {
+    &__header {
+      font-size: 1.5rem;
+    }
+  }
+
+  .form-control {
+    font-size: 1.2rem;
+
+    &__value {
+      width: 55px;
     }
   }
 }

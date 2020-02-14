@@ -34,3 +34,26 @@
     background-color: #2e374b;
   }
 }
+
+@media (max-width: 450px) {
+  .toolbar {
+    width: 100vw;
+    height: 100vh;
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__nav {
+      height: 10%;
+    }
+
+    &__menu {
+      height: 85%;
+    }
+
+    &__footer {
+      height: 5%;
+    }
+  }
+}

@@ -66,3 +66,24 @@
     }
   }
 }
+
+@media (max-width: 450px) {
+  .timer-controller {
+    grid-template-rows: 2fr 1fr;
+    align-items: center;
+  }
+
+  .control-panel {
+    &__start {
+      &:hover {
+        background-color: #2e374b;
+      }
+    }
+    &__skip,
+    &__reset {
+      &:hover {
+        color: #8d8d8d;
+      }
+    }
+  }
+}
